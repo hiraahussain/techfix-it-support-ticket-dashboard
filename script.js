@@ -51,11 +51,11 @@ function saveTickets() {
   localStorage.setItem("techfix_tickets", JSON.stringify(tickets));
 }
 
-/** Load theme preference from localStorage */
+/** Load theme preference from localStorage (default: light) */
 function loadTheme() {
   const theme = localStorage.getItem("techfix_theme");
-  if (theme === "light") {
-    document.documentElement.setAttribute("data-theme", "light");
+  if (theme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
     themeLabel.textContent = "Light Mode";
   } else {
     document.documentElement.removeAttribute("data-theme");
@@ -310,15 +310,15 @@ filterBtns.forEach((btn) => {
 
 // ----- Theme Toggle -----
 themeToggle.addEventListener("click", function () {
-  const isLight = document.documentElement.getAttribute("data-theme") === "light";
-  if (isLight) {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  if (isDark) {
     document.documentElement.removeAttribute("data-theme");
     themeLabel.textContent = "Dark Mode";
-    saveTheme("dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    themeLabel.textContent = "Light Mode";
     saveTheme("light");
+  } else {
+    document.documentElement.setAttribute("data-theme", "dark");
+    themeLabel.textContent = "Light Mode";
+    saveTheme("dark");
   }
 });
 
