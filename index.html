@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechFix — IT Support Ticket Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- ====== SIDEBAR ====== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">&#9881;</div>
+        <span class="brand-text">TechFix</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-tab="dashboard">
+          <span class="nav-icon">&#9632;</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="tickets">
+          <span class="nav-icon">&#9776;</span>
+          <span>All Tickets</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="toggle-icon">&#9790;</span>
+          <span id="themeLabel">Dark Mode</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ====== OVERLAY FOR MOBILE SIDEBAR ====== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main class="main-content">
+
+      <!-- Header -->
+      <header class="top-header">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle sidebar">&#9776;</button>
+        <h1 class="page-title">IT Support Dashboard</h1>
+        <div class="header-right">
+          <span class="current-date" id="currentDate"></span>
+        </div>
+      </header>
+
+      <!-- ====== DASHBOARD SECTION ====== -->
+      <section class="dashboard-section" id="dashboardSection">
+
+        <!-- Hero -->
+        <div class="hero">
+          <h2 class="hero-title">Welcome to TechFix</h2>
+          <p class="hero-subtitle">Submit and manage IT support tickets — quickly and efficiently.</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+          <div class="stat-card stat-total">
+            <div class="stat-info">
+              <span class="stat-number" id="totalTickets">0</span>
+              <span class="stat-label">Total Tickets</span>
+            </div>
+            <div class="stat-icon">&#128203;</div>
+          </div>
+          <div class="stat-card stat-pending">
+            <div class="stat-info">
+              <span class="stat-number" id="pendingTickets">0</span>
+              <span class="stat-label">Pending</span>
+            </div>
+            <div class="stat-icon">&#9200;</div>
+          </div>
+          <div class="stat-card stat-progress">
+            <div class="stat-info">
+              <span class="stat-number" id="inProgressTickets">0</span>
+              <span class="stat-label">In Progress</span>
+            </div>
+            <div class="stat-icon">&#9881;</div>
+          </div>
+          <div class="stat-card stat-resolved">
+            <div class="stat-info">
+              <span class="stat-number" id="resolvedTickets">0</span>
+              <span class="stat-label">Resolved</span>
+            </div>
+            <div class="stat-icon">&#10003;</div>
+          </div>
+        </div>
+
+        <!-- Submission Form -->
+        <div class="form-wrapper">
+          <div class="form-header">
+            <h3>Submit a Ticket</h3>
+            <button class="toggle-form-btn" id="toggleFormBtn">&minus; Hide</button>
+          </div>
+          <form class="ticket-form" id="ticketForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="e.g. John Doe" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="e.g. john@example.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="issueType">Issue Type</label>
+                <select id="issueType" required>
+                  <option value="">Select an issue</option>
+                  <option value="Internet Problem">Internet Problem</option>
+                  <option value="Laptop Issue">Laptop Issue</option>
+                  <option value="Software Installation">Software Installation</option>
+                  <option value="Password Reset">Password Reset</option>
+                  <option value="Printer Problem">Printer Problem</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="priority">Priority</label>
+                <select id="priority" required>
+                  <option value="">Select priority</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Issue Description</label>
+              <textarea id="description" rows="4" placeholder="Describe your issue in detail..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Ticket</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ====== TICKETS SECTION ====== -->
+      <section class="tickets-section" id="ticketsSection">
+
+        <!-- Filters -->
+        <div class="filters-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="Pending">Pending</button>
+          <button class="filter-btn" data-filter="In Progress">In Progress</button>
+          <button class="filter-btn" data-filter="Resolved">Resolved</button>
+          <button class="filter-btn" data-filter="high">High Priority</button>
+        </div>
+
+        <!-- Ticket Grid -->
+        <div class="ticket-grid" id="ticketGrid">
+
+          <!-- Empty State (shown when no tickets) -->
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">&#128196;</div>
+            <h3>No tickets yet</h3>
+            <p>Submit your first IT support request using the form above.</p>
+            <button class="submit-ticket-btn" id="goToFormBtn">Submit a Ticket</button>
+          </div>
+
+          <!-- Tickets will be rendered by JavaScript -->
+        </div>
+      </section>
+
+      <!-- ====== FOOTER ====== -->
+      <footer class="footer">
+        <p>Developed By Hira Hussain Tajlani</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
